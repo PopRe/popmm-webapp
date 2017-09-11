@@ -1,0 +1,84 @@
+{
+  "name": "popmm-webapp",
+  "description": "A Populous: Reincarnated matchmaker webapp client",
+  "version": "1.0.0",
+  "author": "Rickard Lundén (https://github.com/rlunden) <ri.lunden@gmail.com>",
+  "contributors": [
+    "Rickard Lundén <ri.lunden@gmail.com>"
+  ],
+  "homepage": "http://www.popre.net",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PopRe/popmm-webapp.git"
+  },
+  "keywords": [
+    "populous",
+    "matchmaker",
+    "app",
+    "webapp",
+    "websocket",
+    "client"
+  ],
+  "scripts": {
+    "clean": "ionic-app-scripts clean",
+    "build": "ionic-app-scripts build",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve",
+    "ionic:lint": "npm run lint",
+    "test": "ng test"
+  },
+  "dependencies": {
+    "@angular/common": "4.1.3",
+    "@angular/compiler": "4.1.3",
+    "@angular/compiler-cli": "4.1.3",
+    "@angular/core": "4.1.3",
+    "@angular/forms": "4.1.3",
+    "@angular/http": "4.1.3",
+    "@angular/platform-browser": "4.1.3",
+    "@angular/platform-browser-dynamic": "4.1.3",
+    "@ionic-native/android-permissions": "^4.2.1",
+    "@ionic-native/core": "3.13.1",
+    "@ionic-native/in-app-browser": "3.13.1",
+    "@ionic-native/splash-screen": "3.13.1",
+    "@ionic-native/status-bar": "3.13.1",
+    "@ionic/storage": "^2.0.1",
+    "@types/socket.io-client": "^1.4.29",
+    "ionic-angular": "3.6.0",
+    "ionic2-super-tabs": "^4.1.0",
+    "ionicons": "3.0.0",
+    "rxjs": "5.4.0",
+    "socket.io-client": "^1.7.3",
+    "sw-toolbox": "3.6.0",
+    "ts-md5": "^1.2.0",
+    "xml2json": "^0.11.0",
+    "zone.js": "0.8.12"
+  },
+  "devDependencies": {
+    "@ionic/app-scripts": "2.1.3",
+    "@types/jasmine": "^2.5.52",
+    "@types/node": "^7.0.31",
+    "codecov": "^2.2.0",
+    "ionic": "3.9.2",
+    "jasmine-core": "^2.6.3",
+    "jasmine-spec-reporter": "^4.1.0",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-mocha-reporter": "^2.2.3",
+    "karma-remap-istanbul": "^0.6.0",
+    "ts-node": "^3.0.6",
+    "tslint": "^5.7.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "2.3.4"
+  },
+  "cordovaPlugins": [
+    "ionic-plugin-keyboard",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-console",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen"
+  ],
+  "cordovaPlatforms": []
+}

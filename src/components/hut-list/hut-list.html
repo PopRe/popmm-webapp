@@ -1,0 +1,7 @@
+<h2>Huts</h2>
+<div *ngFor="let hut of _huts" class="hut">
+    <div *ngFor="let user of hut.positions" class="position">
+        <span *ngIf="user === false"><user [rawNick]=""></user></span>
+        <span *ngIf="user && user.nick"><user [rawNick]="user.rawNick"></user></span>
+    </div>
+</div>

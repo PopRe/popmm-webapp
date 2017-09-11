@@ -1,0 +1,22 @@
+user-list {
+    .user {
+        margin: 3px 0;
+    }
+
+    .user-wrapper {
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .game-count-wrap {
+        margin-top: 1rem;
+    }
+
+    .game {
+        margin-top: 1rem;
+    }
+
+    .game-status {
+        float: right;
+    }
+}

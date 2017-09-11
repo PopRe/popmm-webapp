@@ -1,0 +1,11 @@
+<div class="user-wrapper" (click)="onUserClicked()">
+    <span class="image-wrapper"><img src="{{image}}"/>
+    </span> <span class="nick-wrapper">{{displayName}}<ion-icon class="mobile" *ngIf="isWebApp()"
+                                                                name="phone-portrait"></ion-icon></span>
+    <span *ngIf="status >= 6 && status <= 15" class="status">{{status | userStatus}}</span>
+    <span *ngIf="status >= 1 && status <= 5" class="game-status">
+        <img src="{{status | userStatus}}"/>
+        <img src="{{circle}}" class="circle"/>
+        <img *ngIf="isStreaming" src="{{streamingIndicator}}" class="streaming-indicator"/>
+    </span>
+</div>

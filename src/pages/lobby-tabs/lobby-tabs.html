@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Lobby</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="screenWidth >= 1080">
+        <ion-row class="main-row">
+            <ion-col col-3 class="hut-list-col">
+                <hut-list></hut-list>
+            </ion-col>
+            <ion-col col-6 class="chat-col" id="lobbyTextareaScrollable">
+                <chat></chat>
+            </ion-col>
+            <ion-col col-3 class="user-list-col">
+                <user-list></user-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <super-tabs #superTabs *ngIf="screenWidth < 1080" selectedTabIndex="{{selectedTab}}">
+        <super-tab [root]="hutListTabRoot" title="Huts" icon="home"></super-tab>
+        <super-tab [root]="chatTabRoot" title="Chat" icon="chatbubbles"></super-tab>
+        <super-tab [root]="userListTabRoot" title="Users" icon="people"></super-tab>
+    </super-tabs>
+</ion-content>

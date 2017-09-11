@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{_nick}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="close()">
+                <ion-icon item-right name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card *ngIf="_user">
+        <ion-card-content>
+            <ion-item>
+                <ion-icon name="medal" item-start></ion-icon>
+                Rank
+                <ion-badge item-end>{{_user.rank}}</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="star" item-start></ion-icon>
+                Points
+                <ion-badge item-end>{{_user.points}}</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="podium" item-start></ion-icon>
+                Mu
+                <ion-badge item-end>{{_user.mu}}</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="pulse" item-start></ion-icon>
+                Sigma
+                <ion-badge item-end>{{_user.sigma}}</ion-badge>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <div class="buttons-wrapper">
+        <button ion-button icon-start (click)="onPrivateMessageClicked()">
+            <ion-icon name="chatbubbles"></ion-icon>
+            Private Message
+        </button>
+        <button *ngIf="_user && _user.twitch" [ngClass]="{'is-streaming': _user.isStreaming }" (click)="openTwitch()" ion-button icon-start>
+            <ion-icon name="logo-twitch"></ion-icon>
+            <span *ngIf="_user.isStreaming" class="streaming">Watch Stream</span>
+            <span *ngIf="!_user.isStreaming">Twitch</span>
+        </button>
+        <button ion-button icon-start (click)="openProfile()">
+            <ion-icon name="person"></ion-icon>
+            View Profile
+        </button>
+        <button ion-button icon-start (click)="openGameHistory()">
+            <ion-icon name="stats"></ion-icon>
+            Game History
+        </button>
+    </div>
+    <ion-card *ngIf="_user && _user.clans && _user.clans.length > 0">
+        <ion-list>
+            <ion-list-header>
+                Clans
+            </ion-list-header>
+            <ion-item *ngFor="let clan of _user.clans">
+                {{clan.status}} of {{clan.name}}
+            </ion-item>
+        </ion-list>
+    </ion-card>
+    <ion-card *ngIf="_user && _user.old_names && _user.old_names.length > 0">
+        <ion-list>
+            <ion-list-header>
+                Previous nicks
+            </ion-list-header>
+            <ion-item *ngFor="let oldNick of _user.old_names.reverse()">{{oldNick}}</ion-item>
+        </ion-list>
+    </ion-card>
+</ion-content>

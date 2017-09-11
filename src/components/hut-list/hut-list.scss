@@ -1,0 +1,11 @@
+hut-list {
+    .hut {
+        .position:not(:first-child) {
+            margin-left: 2rem;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+}

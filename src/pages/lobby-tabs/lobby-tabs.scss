@@ -1,0 +1,47 @@
+page-lobby-tabs {
+    color: color($colors, 'light');
+
+    > ion-content {
+        > .scroll-content {
+            overflow: hidden;
+        }
+    }
+
+    .grid {
+        padding: 0;
+    }
+
+    super-tabs {
+        .toolbar-background {
+            background: color($colors, secondary);
+        }
+    }
+
+    ion-grid {
+        overflow: hidden;
+        max-height: 100%;
+        height: 100%;
+
+        ion-row {
+            height: 100%;
+        }
+
+        .hut-list-col,
+        .user-list-col {
+            overflow-y: auto;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    }
+
+    .chat-col {
+        padding: 0;
+    }
+
+    .text-input-wrapper {
+        position: absolute;
+        left: -8px;
+        right: -8px;
+        bottom: 8px;
+    }
+}

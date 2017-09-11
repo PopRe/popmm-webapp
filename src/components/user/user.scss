@@ -1,0 +1,40 @@
+user {
+    .user-wrapper {
+        cursor: pointer;
+        white-space: nowrap;
+        display: inline-block;
+        text-overflow: ellipsis;
+    }
+
+    .mobile {
+        margin-left: 3px;
+    }
+
+    img {
+        border-radius: 4px;
+        width: 16px;
+        height: 16px;
+        vertical-align: sub;
+    }
+
+    .status {
+        color: color($colors, 'accent');
+    }
+
+    .game-status {
+        position: relative;
+
+        .circle {
+            position: absolute;
+            left: 0;
+        }
+
+        .streaming-indicator {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8px;
+            height: 8px;
+        }
+    }
+}

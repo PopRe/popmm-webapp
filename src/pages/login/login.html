@@ -1,0 +1,48 @@
+﻿<ion-header *ngIf="!isInternetExplorer">
+    <ion-navbar>
+        <ion-title>Login</ion-title>
+        <button menuToggle="mainMenu">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+                <div *ngIf="isInternetExplorer" class="error">
+                    Internet Explorer is not supported
+                </div>
+                <form *ngIf="!isInternetExplorer"
+                      #loginForm="ngForm"
+                      (ngSubmit)="submitLogin(loginForm.value)"
+                      novalidate>
+                    <ion-item class="stripped username-wrapper">
+                        <ion-label floating>Username</ion-label>
+                        <ion-input [(ngModel)]="username" name="username" value=""></ion-input>
+                    </ion-item>
+                    <ion-item class="stripped password-wrapper">
+                        <ion-label floating>Password</ion-label>
+                        <ion-input [(ngModel)]="password" name="password" value="" type="password"></ion-input>
+                    </ion-item>
+                    <ion-item class="stripped remember-wrapper">
+                        <ion-label>Remember me</ion-label>
+                        <ion-toggle [(ngModel)]="rememberMe" name="rememberMe" color="accent" item-right></ion-toggle>
+                    </ion-item>
+                    <button type="submit" class="connect-wrapper" ion-button block large>Connect</button>
+                </form>
+                <div class="link">
+                    <a target="_blank" href="{{forgotPasswordUrl}}">
+                        I forgot my password
+                    </a>
+                </div>
+                <div class="link">
+                    <a target="_blank" href="{{registrationUrl}}">
+                        Register a new account
+                    </a>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

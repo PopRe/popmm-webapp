@@ -1,0 +1,32 @@
+<div class="welcome-msg">{{this.messageProvider.getWelcomeMessage()}}</div>
+<div *ngFor="let message of messages" class="message">
+    <div *ngIf="message.type == 'CHAT'" class="chat">
+        <span *ngIf="message.author" class="author"><user [rawNick]="message.author"></user></span>
+        <span *ngIf="message.text" class="content">{{message.text}}</span>
+    </div>
+    <div *ngIf="message.type == 'PVT'" class="pvt">
+        <span *ngIf="message.author" class="author pvt"><user [rawNick]="message.author"></user></span>
+        <span *ngIf="message.text" class="content pvt">{{message.text}}</span>
+    </div>
+    <div *ngIf="message.type === 'JOIN'" class="connection user-connected">
+        <span *ngIf="message.author" class="content"><user
+                [rawNick]="message.author"></user> {{message.textSuffix}}</span>
+    </div>
+    <div *ngIf="message.type === 'QUIT'" class="connection user-disconnected">
+        <span *ngIf="message.author" class="content"><user
+                [rawNick]="message.author"></user> {{message.textSuffix}}</span>
+    </div>
+    <div *ngIf="message.type === 'ERROR'" class="error">
+        <span *ngIf="message.text" class="content">{{message.text}}</span>
+    </div>
+    <div *ngIf="message.type == 'OWN_CHAT'" class="chat own-chat">
+        <span *ngIf="message.author" class="author me"><user [rawNick]="message.author"></user></span>
+        <span *ngIf="message.text" class="content">{{message.text}}</span>
+    </div>
+    <div *ngIf="message.type == 'OWN_PVT'" class="chat own-pvt">
+        <span *ngIf="message.author" class="author me"><user [rawNick]="message.author"></user></span>
+        <ion-icon class="nick-separator" name="arrow-forward"></ion-icon>
+        <span *ngIf="message.receiver" class="receiver"><user [rawNick]="message.receiver"></user></span>
+        <span *ngIf="message.text" class="content">{{message.text}}</span>
+    </div>
+</div>

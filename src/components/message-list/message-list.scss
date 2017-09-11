@@ -1,0 +1,44 @@
+message-list {
+    .welcome-msg {
+        white-space: pre-wrap;
+    }
+
+    .sender {
+        color: gold;
+        cursor: pointer;
+    }
+
+    .chat {
+        .content {
+            color: color($colors, accent);
+        }
+    }
+
+    .pvt {
+        .content {
+            color: color($colors, private);
+        }
+    }
+
+    .own-pvt {
+        .content {
+            color: color($colors, private);
+        }
+    }
+
+    .message {
+        margin: 4px 0;
+    }
+
+    .message:last-child {
+        padding-bottom: 0.5rem;
+    }
+
+    .user-connected {
+        color: #3fefff;
+    }
+
+    .user-disconnected {
+        color: #ff609a;
+    }
+}

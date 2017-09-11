@@ -1,0 +1,14 @@
+<h2>Users</h2>
+<h6 class="user-count-wrap">{{users.length}} online</h6>
+<div *ngFor="let user of usersWaiting" class="user">
+    <user [rawNick]="user.rawNick" [status]="user.status"></user>
+</div>
+<h6 class="game-count-wrap">{{usersPlaying}} playing</h6>
+<div *ngFor="let game of games" class="game">
+    <div *ngFor="let user of game.players" class="user">
+        <user [rawNick]="user.rawNick"
+              [status]="user.status"
+              [isStreaming]="user.isStreaming"
+              [twitch]="user.twitch"></user>
+    </div>
+</div>

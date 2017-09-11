@@ -1,0 +1,14 @@
+<form #submitMessageForm="ngForm" (ngSubmit)="messageSubmitted(submitMessageForm.value)" novalidate>
+    <div *ngIf="receiver" (click)="closePm()" class="receiver-wrapper">
+        <span class="receiver-box">
+            <span class="receiver-presented">
+                {{receiver}}
+            </span>
+            <ion-icon name="close" class="clear-receiver-icon"></ion-icon>
+        </span>
+    </div>
+    <div class="message-wrapper">
+        <ion-input #input [(ngModel)]="message" (keydown)="messageKeyDown($event)" type="text" name="message"
+                   class="message-input" ngModel></ion-input>
+    </div>
+</form>

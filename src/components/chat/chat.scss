@@ -1,0 +1,20 @@
+chat {
+    ion-scroll {
+        height: 100%;
+    }
+
+    .lobby-textarea {
+        padding-bottom: 61px;
+    }
+
+    .scroll-content {
+        overflow-y: visible;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .scroll-zoom-wrapper {
+        position: relative;
+        min-height: 100%;
+    }
+}

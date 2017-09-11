@@ -1,0 +1,26 @@
+page-login {
+    ion-col.col {
+        margin: 0 auto;
+    }
+
+    ion-toggle.toggle {
+        .toggle-inner {
+            background: color($colors, light);
+        }
+    }
+
+    .password-wrapper,
+    .connect-wrapper,
+    .remember-wrapper {
+        margin-top: 2rem;
+    }
+
+    .remember-wrapper {
+        background: none;
+    }
+
+    .link {
+        margin-top: 2rem;
+        text-align: center;
+    }
+}
