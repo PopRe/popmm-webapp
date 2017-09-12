@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.popre236568" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>popre</name>
+<widget id="net.popre.webapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Populous Matchmaker</name>
     <description>Populous: Reincarnated Matchmaker mobile application.</description>
     <author email="ri.unden@gmail.com">Rickard Lundén</author>
     <content src="index.html" />
