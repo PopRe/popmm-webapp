@@ -37,10 +37,7 @@ export class LobbyTabsPage {
         this.screenWidth = window.innerWidth;
 
         this._anyErrorSubscription = this.socketProvider.onAnyError().subscribe((error: any) => {
-            this._anyErrorSubscription.unsubscribe();
             this.socketProvider.disconnect();
-            // Switch to login page when an error occurs
-            this.navCtrl.push(LoginPage, {error: error});
         });
 
         this._composePrivateMessageSubscription = this.messageProvider.onSlideToChatTabToComposePrivateMessage().subscribe((nick: string) => {
@@ -57,9 +54,7 @@ export class LobbyTabsPage {
         });
 
         this._disconnectSubscription = this.socketProvider.onDisconnect().subscribe((reason: string) => {
-            this._disconnectSubscription.unsubscribe();
-            this._anyErrorSubscription.unsubscribe();
-            this._composePrivateMessageSubscription.unsubscribe();
+            this.navCtrl.popToRoot();
         });
     }
 

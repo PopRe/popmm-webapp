@@ -40,21 +40,31 @@ export class LoginPage {
                        private dataFilterProvider: DataFilterProvider) {
         this.isInternetExplorer = HelperProvider.detectInternetExplorer();
 
-        let error: any = this.navParams.get('error');
+        this._connectedSubscription = this.socketProvider.onConnected().subscribe(() => {
+            // Switch to lobby page
+            this.navCtrl.push(LobbyTabsPage, {});
+        });
 
-        if(error) {
-            this._toast = this.toastCtrl.create({
-                duration: ConfigProvider.toastDuration,
-                showCloseButton: true
-            });
+        this._anyErrorSubscription = this.socketProvider.onAnyError().subscribe((error: any) => {
+            if(error) {
+                this._toast = this.toastCtrl.create({
+                  duration: ConfigProvider.toastDuration,
+                  showCloseButton: true
+                });
 
-            this._toast.setMessage(error.args[0]).present();
-        }
+                this._toast.setMessage(error.args[0]).present();
+            }
+        });
 
         this._disconnectSubscription = this.socketProvider.onDisconnect().subscribe((reason: string) => {
-            this._disconnectSubscription.unsubscribe();
-            this._anyErrorSubscription.unsubscribe();
-            this._connectedSubscription.unsubscribe();
+            if(reason) {
+                this._toast = this.toastCtrl.create({
+                  duration: ConfigProvider.toastDuration,
+                  showCloseButton: true
+                });
+
+                this._toast.setMessage(reason).present();
+            }
         });
     }
 
@@ -126,17 +136,6 @@ export class LoginPage {
                 });
             });
         }).then((serverDetails: any) => {
-            this._anyErrorSubscription = this.socketProvider.onAnyError().subscribe((error: any) => {
-                this._anyErrorSubscription.unsubscribe();
-                loading.dismiss();
-                this._toast.setMessage('Could not connect to server').present();
-            });
-            this._connectedSubscription = this.socketProvider.onConnected().subscribe(() => {
-                this._connectedSubscription.unsubscribe();
-                loading.dismiss();
-                // Switch to lobby page
-                this.navCtrl.push(LobbyTabsPage, {});
-            });
             this.messageProvider.setWelcomeMessage(serverDetails.welcomeMsg);
             this.dataFilterProvider.setUser(serverDetails.username);
             this.socketProvider.connect(serverDetails);
@@ -148,6 +147,8 @@ export class LoginPage {
                     rememberMe: true
                 });
             }
+        }).then(() => {
+            loading.dismiss();
         }).catch((error: Error) => {
             loading.dismiss();
             this._toast.setMessage(error.message).present();
