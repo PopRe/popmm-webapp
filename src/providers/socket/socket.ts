@@ -29,7 +29,8 @@ export class SocketProvider {
         this._socket = io(ConfigProvider.websocketServerHost, {
             reconnection: false,
             transports: ['websocket', 'xhr-polling'],
-            autoConnect: false
+            autoConnect: false,
+            secure: true
         });
 
         this._socket.on('connect', () => {
