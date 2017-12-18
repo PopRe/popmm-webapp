@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class ConfigProvider {
-    public static websocketServerHost: string = 'ts.popre.net:9000';
+    public static websocketServerHost: string = 'https://ts.popre.net:9000/';
     public static popreChannel: string = '#popmm';
     public static mobileUsernamePrefix: string = 'y000';
     public static popreUrl: string = 'https://www.popre.net/';
