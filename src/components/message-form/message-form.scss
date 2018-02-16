@@ -30,4 +30,10 @@ message-form {
         overflow: hidden;
         width: auto;
     }
+
+    .is-muted {
+        input {
+            text-align: center;
+        }
+    }
 }

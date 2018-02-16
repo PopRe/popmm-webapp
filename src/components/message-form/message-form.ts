@@ -14,6 +14,10 @@ import {ConfigProvider} from "../../providers/config/config";
 export class MessageFormComponent {
     private _composePrivateMessageSubscription: Subscription;
     private _disconnectSubscription: Subscription;
+    private _floodTimeout: number = ConfigProvider.floodTimeout;
+    private _muteCooldown: number = ConfigProvider.muteCooldown;
+    private _numberOfRecentMessages: number = 0;
+    private _isMuted: boolean = false;
     private receiver: string;
     private message: string;
     @ViewChild('input') private textInput: TextInput;
@@ -69,31 +73,34 @@ export class MessageFormComponent {
      */
     public messageSubmitted(form: {message: string}): void {
         if(form.message) {
-            if(this.receiver) {
-                // There is a receiver which means it's a private message
-                let users: any = this.userProvider.getUsersByNick(this.receiver);
+            this.floodProtection();
+            if(!this._isMuted) {
+                if(this.receiver) {
+                    // There is a receiver which means it's a private message
+                    let users: any = this.userProvider.getUsersByNick(this.receiver);
 
-                if(users && users.length > 0) {
-                    for(let user of users) {
-                        this.socketProvider.sendPrivate(user.rawNick, form.message);
+                    if(users && users.length > 0) {
+                        for(let user of users) {
+                            this.socketProvider.sendPrivate(user.rawNick, form.message);
+                        }
+
+                        this.messageProvider.addMessage(new Message({
+                            type: 'OWN_PVT',
+                            text: form.message,
+                            author: ConfigProvider.mobileUsernamePrefix + this.socketProvider.serverDetails.username,
+                            receiver: users[0].rawNick
+                        }));
+                    } else {
+                        // There's no receiver so it's a public message
+                        this.socketProvider.sendPublic(form.message);
+                        this.messageProvider.addMessage(new Message({
+                            type: 'OWN_CHAT',
+                            text: form.message,
+                            author: ConfigProvider.mobileUsernamePrefix + this.socketProvider.serverDetails.username
+                        }));
+                        this.receiver = '';
                     }
-
-                    this.messageProvider.addMessage(new Message({
-                        type: 'OWN_PVT',
-                        text: form.message,
-                        author: ConfigProvider.mobileUsernamePrefix + this.socketProvider.serverDetails.username,
-                        receiver: users[0].rawNick
-                    }));
                 }
-            } else {
-                // There's no receiver so it's a public message
-                this.socketProvider.sendPublic(form.message);
-                this.messageProvider.addMessage(new Message({
-                    type: 'OWN_CHAT',
-                    text: form.message,
-                    author: ConfigProvider.mobileUsernamePrefix + this.socketProvider.serverDetails.username
-                }));
-                this.receiver = '';
             }
         } else {
             // Clear possible receiver if an empty message has been submitted
@@ -102,5 +109,30 @@ export class MessageFormComponent {
 
         // Clear message after submit
         this.message = '';
+    }
+
+    /**
+     * Prevent client from flooding the chat.
+     */
+    private floodProtection(): void {
+        // Stack a message to recent messages
+        this._numberOfRecentMessages++;
+
+        // If recent messages are more than allowed then mute
+        if(this._numberOfRecentMessages <= ConfigProvider.maxRecentMessages) {
+            // Decrease recent messages by one after flood timeout value
+            setTimeout(() => {
+                this._numberOfRecentMessages--;
+            }, this._floodTimeout);
+        } else {
+            this.receiver = '';
+            this.message = '';
+            this._isMuted = true;
+
+            // Disable mute after mute cooldown value
+            setTimeout(() => {
+                this._isMuted = false;
+            }, this._muteCooldown);
+        }
     }
 }

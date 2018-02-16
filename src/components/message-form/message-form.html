@@ -8,7 +8,13 @@
         </span>
     </div>
     <div class="message-wrapper">
-        <ion-input #input [(ngModel)]="message" (keydown)="messageKeyDown($event)" type="text" name="message"
+        <ion-input #input [(ngModel)]="message"
+                   [disabled]="_isMuted"
+                   [class.is-muted]="_isMuted"
+                   placeholder="{{ _isMuted ? 'You are muted for ' + this._muteTimeout / 1000 + ' seconds' : '' }}"
+                   (keydown)="messageKeyDown($event)"
+                   type="text"
+                   name="message"
                    class="message-input" ngModel></ion-input>
     </div>
 </form>

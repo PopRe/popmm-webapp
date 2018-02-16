@@ -15,4 +15,7 @@ export class ConfigProvider {
     public static quitSuffix: string = 'out';
     public static toastDuration: number = 3000;
     public static autoScrollThreshold: number = 200;
+    public static floodTimeout: number = 7000;
+    public static muteCooldown: number = 60000;
+    public static maxRecentMessages: number = 5;
 }
