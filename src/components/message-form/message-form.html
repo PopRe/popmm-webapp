@@ -11,7 +11,7 @@
         <ion-input #input [(ngModel)]="message"
                    [disabled]="_isMuted"
                    [class.is-muted]="_isMuted"
-                   placeholder="{{ _isMuted ? 'You are muted for ' + this._muteTimeout / 1000 + ' seconds' : '' }}"
+                   placeholder="{{ _isMuted ? 'You are muted for ' + this._muteCooldown / 1000 + ' seconds' : '' }}"
                    (keydown)="messageKeyDown($event)"
                    type="text"
                    name="message"

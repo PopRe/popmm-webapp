@@ -90,16 +90,16 @@ export class MessageFormComponent {
                             author: ConfigProvider.mobileUsernamePrefix + this.socketProvider.serverDetails.username,
                             receiver: users[0].rawNick
                         }));
-                    } else {
-                        // There's no receiver so it's a public message
-                        this.socketProvider.sendPublic(form.message);
-                        this.messageProvider.addMessage(new Message({
-                            type: 'OWN_CHAT',
-                            text: form.message,
-                            author: ConfigProvider.mobileUsernamePrefix + this.socketProvider.serverDetails.username
-                        }));
-                        this.receiver = '';
                     }
+                } else {
+                    // There's no receiver so it's a public message
+                    this.socketProvider.sendPublic(form.message);
+                    this.messageProvider.addMessage(new Message({
+                        type: 'OWN_CHAT',
+                        text: form.message,
+                        author: ConfigProvider.mobileUsernamePrefix + this.socketProvider.serverDetails.username
+                    }));
+                    this.receiver = '';
                 }
             }
         } else {
