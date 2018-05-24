@@ -6,6 +6,7 @@ export class ConfigProvider {
     public static popreChannel: string = '#popmm';
     public static mobileUsernamePrefix: string = 'y000';
     public static popreUrl: string = 'https://www.popre.net/';
+    public static popreDataUrl: string = 'https://data.matak.net/';
     public static forgotPasswordUrl: string = ConfigProvider.popreUrl + 'forum/ucp.php?mode=sendpassword';
     public static registrationUrl: string = ConfigProvider.popreUrl + 'forum/ucp.php?mode=register';
     public static userProfileUrl: string = ConfigProvider.popreUrl + 'user.php?username=';

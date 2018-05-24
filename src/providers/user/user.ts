@@ -155,7 +155,9 @@ export class UserProvider {
      * @returns {Promise<{}>} Promise containing user details if successful request.
      */
     public getUserDetails(user: User | {nick: string}): Promise<{}> {
-        return this.api.get(ConfigProvider.popreUrl + 'user.php?json&username=' + user.nick);
+		let re = /[^a-z0-9_]/g;
+		var nick = user.nick.toLowerCase().replace(re, "");
+        return this.api.get(ConfigProvider.popreDataUrl + 'json/users/' + nick + '.json');
     }
 
     /**
